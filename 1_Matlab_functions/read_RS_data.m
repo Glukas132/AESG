@@ -14,7 +14,7 @@ function [Nw_RS, H_RS, ZTD_RS, lat0, lon0, H0] = read_RS_data(file_RS)
 % epoch
 
 %DoY and time
-doy=125;
+doy=138;
 hh=0;
 
 % Time 

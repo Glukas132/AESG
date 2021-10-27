@@ -1,4 +1,4 @@
-function   [site_ell,data_all] =  read_TRO_files( file_path,file_name)
+function   [site_ell,data_all] =  read_TRO_files(file_path)
 
 %This function reads .TRO files
 
@@ -7,7 +7,6 @@ function   [site_ell,data_all] =  read_TRO_files( file_path,file_name)
 % (2) data_all: All tropospheric data (e.g. TROTOT == ZTD) depending on the
 % epoch
 
-file_path=[file_path file_name];
 f = fopen(file_path);
 tline = fgetl(f);
 line_num_test=1;
