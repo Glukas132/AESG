@@ -1,13 +1,6 @@
 clc
 clear
-if exist("GO513138.TRO.mat", "file")
-    load("GO513138.TRO.mat");
-    load("GO513138.data_all.mat");
-else
-    [stations, data_all] = read_TRO_files("1_DATA\GO513138.TRO");
-    save("GO513138.TRO.mat", "stations");
-    save("GO513138.data_all.mat", "data_all");
-end
+[stations, data_all] = read_TRO_files("1_DATA\GO513138.TRO");
 [Nw_RS, H_RS, ZTD_RS, lat0, lon0, H0] = read_RS_data("raob_soundings14969.txt");
 %ZHD = Saastamoinen_ZHD(1013.25, stations.lat, stations.H);
 ZTD = [data_all.ZTD];
@@ -61,8 +54,9 @@ xlabel('Nw [ppm]')
 len = zeros(1,254);
 C = zeros(255,3);
 C(:,3) = 1;
+ref_ell = referenceEllipsoid('wgs84');
 for i = 1:254
-    len(i) = distance(lat0,lon0, stations.lat(i), stations.lon(i));
+    len(i) = distance(lat0,lon0, stations.lat(i), stations.lon(i), ref_ell);
 end
 [m, idx] = min(len);
 lats = [stations.lat, lat0];
